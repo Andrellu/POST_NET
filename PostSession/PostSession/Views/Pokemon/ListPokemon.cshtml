@@ -1,0 +1,25 @@
+﻿@model List<Pokemon>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero Dex</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Pokemon pokemon in Model)
+        {
+            <tr>
+                <td>@pokemon.NumeroPokedex</td>
+                <td>@pokemon.Nombre</td>
+                <td>@pokemon.Tipo</td>
+                <td><img src="@pokemon.Imagen" width="200px"/></td>
+                <td><a asp-controller="Pokemon" asp-action="AñadirCarrito" asp-route-id="@pokemon.NumeroPokedex">Añadir a session</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

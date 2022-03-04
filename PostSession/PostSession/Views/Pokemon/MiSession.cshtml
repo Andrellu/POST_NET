@@ -1,0 +1,40 @@
+﻿@model List<Pokemon>
+
+@{ 
+    List<int> pokemonSession = Context.Session.GetObject<List<int>>("SESSION");
+}
+
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="row mb-3">
+        <div class="col text-center">
+            <h1 style="color:red">@ViewData["MENSAJE"]</h1>
+        </div>
+    </div>
+}
+else
+{
+    <ul>
+        @foreach (Pokemon pokemon in Model)
+        {
+            <li>
+                @pokemon.Nombre : @pokemon.Tipo 
+                <a asp-controller="Pokemon" asp-action="RemoveSession" asp-route-id="@pokemon.NumeroPokedex">
+                    Eliminar de Session
+                </a>
+            </li>
+        }
+    </ul>
+
+    @*<ul>
+        @foreach (int pokemon in pokemonSession)
+        {
+            <li>
+                @pokemon
+                <a asp-controller="Pokemon" asp-action="RemoveSession" asp-route-id="@pokemon">
+                    Eliminar de Session
+                </a>
+            </li>
+        }
+    </ul>*@
+}
